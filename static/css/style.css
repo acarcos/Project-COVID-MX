@@ -1,0 +1,16 @@
+body {
+    padding: 0;
+    margin: 0; 
+}
+ 
+#map {
+    height: 70%; 
+} 
+
+html, body {
+  height: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
