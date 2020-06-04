@@ -3,109 +3,105 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="COVID MX">
-    <meta name="author" content="Arcos">
-    <!-- <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico"> -->
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>Album example · Bootstrap</title>
 
-    <title>COVID Cases MX</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+    <!-- D3 and Plotly -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- ======================== -->
 
     <!-- Bootstrap core CSS -->
-    <!-- <link href="../static/css/bootstrap.min.css" rel="stylesheet">  -->
+<link href="../static/assets/dist/css/bootstrap.css" rel="stylesheet">
 
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
     <!-- Custom styles for this template -->
-    <link href="../static/css/dashboard.css" rel="stylesheet">  
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- This is the navbar -->
+    <link href="../static/css/album.css" rel="stylesheet">
   </head>
-
   <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-lg-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/"> <h5>COVID in Mexico</h5></a>
-    </nav>
-
-    <div class="container-fluid full-height">
-      <div class="row full-height" >
-        <nav class="col-md-2 col-2 col-sm-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="/">
-                  <!-- <span data-feather="home"></span> -->
-                  About <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/states/">
-                  <!-- <span data-feather="file"></span> -->
-                  Cases per State
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/genre/">
-                  <!-- <span data-feather="shopping-cart"></span> -->
-                  Cases per Genre
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/age/">
-                  <!-- <span data-feather="users"></span> -->
-                  Cases per Age
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/map/">
-                  <!-- <span data-feather="bar-chart-2"></span> -->
-                  Map
-                </a>
-              </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrations
-                </a>
-              </li> -->
-            </ul>
-          </div>
-        </nav>
-
-        <!-- <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"> -->
-        <main role="main" class="col-md-9 ml-sm-9 col-lg-9 col-9 col-xl-9 px-4">
-          {% block content %}
-          <div>
-          <p class="lead">
-            Corona virus is a disease that spread around the world very quickly. Measures have been taken to slow down its spread, however, it has not been enough.
-            The type of person most affected by this disease varies from country to country. In Mexico, the virus keeps affecting and increasing the number of cases. 
-            This is why, in the following are the daily positive cases reported nationwide by the mexican government. 
-
-            The database is obtained from the <a href="https://datos.cdmx.gob.mx/explore/dataset/casos-asociados-a-covid-19/table/?disjunctive.resultado"> Mexico City Government</a>.
-          </p></div>
-          {% endblock %}
-        </main>
-
+    <header>
+  <div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About</h4>
+          <p class="text-muted">The corona virus is still affecting the mexican population. While most of the information is related to the total of cases, here are shown only the new daily cases added into the mexican database. The information changes everyday.</p>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4 class="text-white">Official information</h4>
+          <ul class="list-unstyled">
+            <li><a href="https://covid19.who.int/" target="_blank" class="text-white">WHO</a></li>
+            <li><a href="https://coronavirus.gob.mx/datos/" target="_blank" class="text-white">Coronavirus in Mexico</a></li>
+            <li><a href="https://datos.cdmx.gob.mx/explore/dataset/casos-asociados-a-covid-19/table/?disjunctive.resultado" target="_blank" class="text-white">Mexican Database</a></li>
+          </ul>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="13" r="8"/></svg>
+        <strong>COVID in Mexico</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <!-- <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
-    <!-- <script src="../../assets/js/vendor/popper.min.js"></script> -->
-    <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
 
-    <!-- Icons -->
-    <!-- <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script> -->
-    <!-- <script>
-      feather.replace()
-    </script> -->
+<!-- Container for the graphs -->
+{% block content %}
+<div class="container"> 
+  
+</div>
+{% endblock %}
 
-       </script>
-       <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-       <script src="https://d3js.org/d3.v5.min.js"></script>
-       <!-- <script src="../static/js/data.js"></script> -->
-  </body>
-</html>
+
+<!-- ============================= -->
+
+<!-- D3 script-->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<!-- ============================== -->
+
+<!-- Footer for buttons -->
+
+<footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <!-- <a href="#">Back to top</a> -->
+      </p>
+      <p>To get information, press any button.</p> 
+      <a href="/map/" class="btn btn-outline-dark" role="button">MAP</a>
+      <a href="/plots/" class="btn btn-outline-dark" role="button">Daily Cases</a>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../static/assets/dist/js/bootstrap.bundle.js"></script>
+    </body>
+  </html>
