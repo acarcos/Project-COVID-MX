@@ -4,10 +4,10 @@
 const data = jsonObject;
 
 // Just to verify that are only cosidered positive cases
-var filterData = data.records.filter(value => value.fields.resultado == "Positivo SARS-CoV-2");
+//var filterData = data.records.filter(value => value.fields.resultado == "Positivo SARS-CoV-2");
 
 // Group function to gather the data per states
-let groupedData = filterData.reduce((r,a) => {
+let groupedData = data.records.reduce((r,a) => {
     r[a.fields.entidad_res] = [...r[a.fields.entidad_res] || [], a];
     return r;
 }, {});
@@ -23,19 +23,6 @@ for (var i=0; i<Object.keys(groupedData).length; i++) {
     countCases[tempState] = groupedData[tempState].length;
 };
 
-//console.log(countCases);
-
-// Change format to list
-// var arrDict = [];
-// for (var key in countCases) {
-//     if (countCases.hasOwnProperty(key)) {
-//         arrDict.push( [ key, countCases[key] ] );
-//     }
-// }
-
-//console.log(arrDict);
-
-
 // Draw map
 var mymap = L.map('map').setView([23.85664,-101.524857], 5.3);
 
@@ -48,57 +35,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: "pk.eyJ1IjoiY2hhcmNvcyIsImEiOiJja2FuNXE5YXUxbGRyMnFuc3c5dzRkamkxIn0.2IEQgoBPJmtVyxaXuGxBAQ"
 }).addTo(mymap);
 
-// Draw states with its corresponding number of cases
-// d3.json("../static/data/mexican_states.geojson").then(function (edos) {
-//     console.log(edos);
-//     L.geoJSON(edos)
-//         .bindPopup(function (layer) {
-//         var state = layer.feature.properties.admin_name;
-//             return `${state} <hr> Number cases: ${countCases[state]}`;
-//         })
-//         .addTo(mymap);
-// });
-
-// Chropleth map
-//var myJSON = JSON.stringify(countCases);
-//console.log(Object.values(countCases));
-
-//var geoData = "../static/data/mexican_states.geojson";
-//var geoVariable;
-
-// d3.json("../static/data/mexican_states.geojson").then(function(cdata) {
-//     console.log(cdata);
-    
-
-//     var lookup = {};
-//     cdata.features.forEach(function (item) {
-//         if (item.local) {
-//             lookup[item.local] = item;
-//         }
-//     })
-//     // geoVariable = L.choropleth(cdata, {
-//     //     valueProperty: Object.values(countCases),
-//     //     scale: ["#ffffb2", "#b10026"],
-//     //     steps: 10,
-//     //     mode: "q",
-//     //     style: {
-//     //     // Border color
-//     //     color: "#fff",
-//     //     weight: 1,
-//     //     fillOpacity: 0.8
-//     //     },
-//     // }).addTo(mymap);
-
-//     cdata.features.forEach(function (d) {
-//         if (lookup[d.properties.NOME]) {
-//             d.properties.joined = lookup[d.properties.NOME];
-//         }
-//     })
-
-//     console.log(cdata);
-// });
-
-// ===============================================================
 d3.json('../static/data/mexican_states.geojson').then(function (geojson) {
     var choroplethLayer = L.choropleth(geojson, {
         valueProperty: function (feature) {

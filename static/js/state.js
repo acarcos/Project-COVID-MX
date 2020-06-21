@@ -4,16 +4,16 @@
 const data = jsonObject;
 
 // Just to verify that are only cosidered positive cases
-var filterData = data.records.filter(value => value.fields.resultado == "Positivo SARS-CoV-2");
+//var filterData = data.records.filter(value => value.fields.resultado == "Positivo SARS-CoV-2");
 //console.log(filterData);
 
 // Group function used to gather the data per states
-let groupedData = filterData.reduce((r,a) => {
+let groupedData = data.records.reduce((r,a) => {
     r[a.fields.entidad_res] = [...r[a.fields.entidad_res] || [], a];
     return r;
 }, {});
 
-// console.log(groupedData);
+console.log(groupedData);
 
 // Date of actualization (mostly is a day of delay)
 var dateAct = groupedData['PUEBLA'][0].fields.fecha_actualizacion;
@@ -61,8 +61,8 @@ Plotly.newPlot("plotdos", dataNumAge, layout1, config);
 
 var numAge = {};
 
-for (var i=0; i<filterData.length; i++) {
-    var tempAge = filterData[i].fields.rango_edad;
+for (var i=0; i<data.records.length; i++) {
+    var tempAge = data.records[i].fields.rango_edad;
 
     if (tempAge in numAge) {
         numAge[tempAge] += 1;
@@ -101,8 +101,8 @@ Plotly.newPlot("plotage", dataNumAge, layout2);
 
 var numGenre = {};
 
-for (var i=0; i<filterData.length; i++) {
-    var tempGenre = filterData[i].fields.sexo;
+for (var i=0; i<data.records.length; i++) {
+    var tempGenre = data.records[i].fields.sexo;
 
     if (tempGenre in numGenre) {
         numGenre[tempGenre] += 1;
